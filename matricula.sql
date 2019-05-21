@@ -192,3 +192,21 @@ CREATE TABLE necessidade_recurso
     FOREIGN KEY (recurso) REFERENCES recurso(tipo),
     FOREIGN KEY (necessidade, id_aluno, id_matricula) REFERENCES necessidade_especial(necessidade, id_aluno, id_matricula)
 );
+
+DROP TABLE IF EXISTS aluno_turma CASCADE;
+CREATE TABLE aluno_turma
+(
+    id_turma INT NOT NULL,
+    id_aluno INT NOT NULL,
+    id_matricula INT NOT NULL,
+    nu_duracao_turma INT,
+    nu_dur_ativ_comp_mesma_rede INT,
+    nu_dur_ativ_comp_outras_redes INT,
+    nu_dur_aee_mesma_rede INT,
+    nu_dur_aee_outras_redes INT,
+    nu_dias_atividade INT,
+    PRIMARY KEY (id_turma, id_aluno, id_matricula),
+    FOREIGN KEY (id_aluno, id_matricula) REFERENCES aluno(id_aluno, id_matricula),
+    -- TODO:
+    -- FOREIGN KEY (id_turma) REFERENCES turma(id_turma)
+)

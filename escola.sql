@@ -33,6 +33,8 @@ DROP TABLE if EXISTS tp_localizacao_diferenciada;
 DROP TABLE if EXISTS tp_local_func;
 DROP TABLE if EXISTS tp_ocupacao_galpao;
 DROP TABLE if EXISTS tp_ocupacao_predio_escolar;
+DROP TABLE IF EXISTS oferta_matricula cascade;
+DROP TABLE if EXISTS escola_oferta_matricula;
 
 
 create table tp_situacao_funcionamento(
@@ -140,13 +142,13 @@ CREATE TABLE oferta_matricula(
 );
 
 CREATE TABLE escola (
-    co_entidade INT UNIQUE,
-    co_regiao INT UNIQUE,
-    co_mesorregiao INT UNIQUE,
-    co_microregiao int UNIQUE,
-    co_uf int UNIQUE,
-    co_municipio int UNIQUE,
-    co_distrito int UNIQUE,
+    co_entidade INT,
+    co_regiao INT,
+    co_mesorregiao INT,
+    co_microregiao int,
+    co_uf int,
+    co_municipio int,
+    co_distrito int,
     no_entidade VARCHAR(100),
     co_orgao_regional VARCHAR(5),
     dt_ano_letivo_inicio DATE, 

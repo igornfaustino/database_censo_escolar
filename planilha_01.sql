@@ -43,6 +43,10 @@ CREATE TABLE mantenedor(
 	tp_mantenedor VARCHAR(50) PRIMARY KEY
 );
 
+CREATE TABLE tp_regulamentacao(
+    tp_regulamentacao VARCHAR(50) PRIMARY KEY
+);
+
 CREATE TABLE escola (
     co_entidade INT UNIQUE,
     co_regiao INT UNIQUE,
@@ -75,7 +79,7 @@ CREATE TABLE escola (
     tp_categoria_escola_privada VARCHAR(50) REFERENCES tp_categoria_escola_privada(tp_categoria_escola_privada),
     in_conveniada_pp VARCHAR(50) REFERENCES in_conveniada_pp(in_conveniada_pp),
     tp_convenio_poder_publico VARCHAR(50) REFERENCES tp_convenio_poder_publico(tp_convenio_poder_publico),
-
+    tp_regulamentacao VARCHAR(50) REFERENCES tp_regulamentacao(tp_regulamentacao),
     primary key(co_entidade,co_regiao,co_mesorregiao,co_microregiao,co_uf,co_municipio,co_distrito)
 
 );

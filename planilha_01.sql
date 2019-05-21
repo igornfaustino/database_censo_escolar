@@ -9,6 +9,10 @@ DROP TABLE if EXISTS in_conveniada_pp;
 DROP TABLE if EXISTS tp_convenio_poder_publico;
 DROP TABLE if EXISTS mantenedor;
 DROP TABLE if EXISTS escola_mantenedor;
+DROP TABLE if EXISTS tp_aee;
+DROP TABLE if EXISTS tp_atividade_complementar;
+DROP TABLE if EXISTS tp_indigena_lingua;
+DROP TABLE if EXISTS tp_localizacao_diferenciada;
 
 
 create table tp_situacao_funcionamento(
@@ -80,6 +84,9 @@ CREATE TABLE escola (
     in_conveniada_pp VARCHAR(50) REFERENCES in_conveniada_pp(in_conveniada_pp),
     tp_convenio_poder_publico VARCHAR(50) REFERENCES tp_convenio_poder_publico(tp_convenio_poder_publico),
     tp_regulamentacao VARCHAR(50) REFERENCES tp_regulamentacao(tp_regulamentacao),
+    tp_aee VARCHAR(50) REFERENCES tp_aee(tp_aee),
+    tp_atividade_complementar VARCHAR(50) REFERENCES tp_atividade_complementar(tp_atividade_complementar),
+    tp_indigena_lingua VARCHAR(100) REFERENCES tp_indigena_lingua(tp_indigena_lingua) not null,
     primary key(co_entidade,co_regiao,co_mesorregiao,co_microregiao,co_uf,co_municipio,co_distrito)
 
 );
@@ -96,3 +103,28 @@ CREATE TABLE escola_mantenedor(
 
 	PRIMARY KEY(tp_mantenedor, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 );
+
+--jonas (vermelhinhos)
+
+CREATE TABLE tp_aee(
+    tp_aee VARCHAR(50) PRIMARY KEY
+);
+
+CREATE TABLE tp_atividade_complementar(
+    tp_atividade_complementar VARCHAR(50) PRIMARY KEY
+);
+
+CREATE TABLE tp_indigena_lingua(
+    tp_indigena_lingua VARCHAR(100) PRIMARY KEY
+);
+
+CREATE TABLE tp_localizacao_diferenciada(
+    tp_localizacao_diferenciada VARCHAR(100) PRIMARY KEY
+    -- colar em "local_funcionamento": tp_localizacao_diferenciada VARCHAR(100) REFERENCES tp_localizacao_diferenciada(tp_localizacao_diferenciada) not null,
+);
+
+CREATE TABLE tp_local_func(
+    tp_local_func VARCHAR(50) PRIMARY KEY
+    -- colar em "local_funcionamento": tp_local_func VARCHAR(50) REFERENCES tp_local_func(tp_local_func) not null,
+);
+

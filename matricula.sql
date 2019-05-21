@@ -2,16 +2,16 @@ DROP TABLE IF EXISTS matricula CASCADE;
 CREATE TABLE matricula
 (
     id_matricula INT,
-    -- TODO: FK para escola
     co_entidade INT,
     co_regiao INT,
     co_mesorregiao INT,
-    co_microrregia0 INT,
+    co_microregiao INT,
     co_uf INT,
     co_municipio INT,
     co_distrito INT,
+    codigo INT REFERENCES etapa_de_ensino(codigo),
     PRIMARY KEY (id_matricula),
-    -- FOREIGN KEY (co_entidade, co_regiao,co_mesorregiao, co_microrregiao, co_uf, co_municipio, co_distrito) REFERENCES escola(co_entidade, co_regiao,co_mesorregiao, co_microrregiao, co_uf, co_municipio, co_distrito)
+    FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) 
 );
 
 DROP TABLE IF EXISTS sexo  CASCADE;
@@ -94,8 +94,6 @@ CREATE TABLE aluno
     in_regular BOOLEAN NOT NULL,
     in_eja BOOLEAN NOT NULL,
     in_profissionalizante BOOLEAN NOT NULL,
-    -- TODO: fk etapa ensino
-    codigo INT REFERENCES etapa_de_ensino(codigo),
     PRIMARY KEY (id_aluno, id_matricula),
     FOREIGN KEY (id_matricula) REFERENCES matricula(id_matricula) ON DELETE CASCADE,
     FOREIGN KEY (sexo) REFERENCES sexo(sexo),
@@ -207,7 +205,7 @@ CREATE TABLE aluno_turma
     nu_dur_aee_outras_redes INT,
     nu_dias_atividade INT,
     PRIMARY KEY (id_turma, id_aluno, id_matricula),
-    FOREIGN KEY (id_aluno, id_matricula) REFERENCES aluno(id_aluno, id_matricula),
+    FOREIGN KEY (id_aluno, id_matricula) REFERENCES aluno(id_aluno, id_matricula)
     -- TODO:
     -- FOREIGN KEY (id_turma) REFERENCES turma(id_turma)
 )

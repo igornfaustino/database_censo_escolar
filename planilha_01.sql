@@ -13,6 +13,9 @@ DROP TABLE if EXISTS tp_aee;
 DROP TABLE if EXISTS tp_atividade_complementar;
 DROP TABLE if EXISTS tp_indigena_lingua;
 DROP TABLE if EXISTS tp_localizacao_diferenciada;
+DROP TABLE if EXISTS tp_local_func;
+DROP TABLE if EXISTS tp_ocupacao_galpao;
+DROP TABLE if EXISTS tp_ocupacao_predio_escolar;
 
 
 create table tp_situacao_funcionamento(
@@ -128,3 +131,12 @@ CREATE TABLE tp_local_func(
     -- colar em "local_funcionamento": tp_local_func VARCHAR(50) REFERENCES tp_local_func(tp_local_func) not null,
 );
 
+CREATE TABLE tp_ocupacao_galpao(
+    tp_ocupacao_galpao VARCHAR(20) PRIMARY KEY
+    -- colar em "local_funcionamento": tp_ocupacao_galpao VARCHAR(20) REFERENCES tp_ocupacao_galpao(tp_ocupacao_galpao),
+);
+
+CREATE TABLE tp_ocupacao_predio_escolar(
+    tp_ocupacao_predio_escolar VARCHAR(20) PRIMARY KEY
+    -- colar em "local_funcionamento": tp_ocupacao_predio_escolar VARCHAR(20) REFERENCES tp_ocupacao_predio_escolar(tp_ocupacao_predio_escolar),
+);

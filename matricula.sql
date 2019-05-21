@@ -95,6 +95,7 @@ CREATE TABLE aluno
     in_eja BOOLEAN NOT NULL,
     in_profissionalizante BOOLEAN NOT NULL,
     -- TODO: fk etapa ensino
+    codigo INT REFERENCES etapa_de_ensino(codigo),
     PRIMARY KEY (id_aluno, id_matricula),
     FOREIGN KEY (id_matricula) REFERENCES matricula(id_matricula) ON DELETE CASCADE,
     FOREIGN KEY (sexo) REFERENCES sexo(sexo),

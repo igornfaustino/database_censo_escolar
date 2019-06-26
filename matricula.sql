@@ -11,7 +11,7 @@ CREATE TABLE matricula
     co_distrito INT,
     codigo INT REFERENCES etapa_de_ensino(codigo),
     PRIMARY KEY (id_matricula),
-    FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) 
+    -- FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) 
 );
 
 DROP TABLE IF EXISTS sexo  CASCADE;

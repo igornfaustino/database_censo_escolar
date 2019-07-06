@@ -5,6 +5,8 @@ DROP TABLE if EXISTS tp_faltante;
 DROP TABLE if EXISTS tp_dependencia;
 DROP TABLE if EXISTS tp_localizacao;
 DROP TABLE if EXISTS tp_categoria_escola_privada;
+DROP TABLE if EXISTS escola_conveniada_pp;
+DROP TABLE if EXISTS escola_local_funcionamento;
 DROP TABLE if EXISTS in_conveniada_pp;
 DROP TABLE if EXISTS tp_convenio_poder_publico;
 DROP TABLE if EXISTS in_mantenedor cascade;
@@ -25,7 +27,6 @@ DROP TABLE if EXISTS escola_tp_esgoto;
 DROP TABLE if EXISTS escola_tp_energia;
 DROP TABLE if EXISTS escola_tp_lixo;
 DROP TABLE if EXISTS escola_tp_internet;
-
 DROP TABLE if EXISTS tp_aee;
 DROP TABLE if EXISTS tp_atividade_complementar;
 DROP TABLE if EXISTS tp_indigena_lingua;
@@ -37,113 +38,119 @@ DROP TABLE IF EXISTS oferta_matricula cascade;
 DROP TABLE if EXISTS escola_oferta_matricula;
 
 
+
 create table tp_situacao_funcionamento(
     tp_situacao_funcionamento INTEGER primary key,
-    tp_situacao_funcionamento_nome VARCHAR(50)
+    tp_situacao_funcionamento_nome VARCHAR(150)
 );
 
 create table tp_faltante(
     tp_faltante INTEGER PRIMARY KEY, 
-    tp_faltante_nome VARCHAR(50)
+    tp_faltante_nome VARCHAR(150)
 );
 
 create table tp_dependencia(
     tp_dependencia INTEGER PRIMARY KEY,
-    tp_dependencia_nome VARCHAR(50)
+    tp_dependencia_nome VARCHAR(150)
 );
 
 create table tp_localizacao(
     tp_localizacao INTEGER PRIMARY KEY,
-    tp_localizacao_nome VARCHAR(50)
+    tp_localizacao_nome VARCHAR(150)
 
 );
 
 create table tp_categoria_escola_privada(
     tp_categoria_escola_privada INTEGER PRIMARY KEY,
-    tp_categoria_escola_privada_nome VARCHAR(50)
+    tp_categoria_escola_privada_nome VARCHAR(150)
 );
 
 create table in_conveniada_pp(
-    in_conveniada_pp VARCHAR(50) PRIMARY KEY
+    in_conveniada_pp VARCHAR(150) PRIMARY KEY
 
 );
 
 create table tp_convenio_poder_publico(
     tp_convenio_poder_publico INTEGER PRIMARY KEY,
-    tp_convenio_poder_publico_nome VARCHAR(50)
+    tp_convenio_poder_publico_nome VARCHAR(150)
 );
 
 CREATE TABLE in_mantenedor(
-	in_mantenedor VARCHAR(50) PRIMARY KEY
+	in_mantenedor VARCHAR(150) PRIMARY KEY
 );
 
 CREATE TABLE tp_regulamentacao(
     tp_regulamentacao INTEGER PRIMARY KEY,
-    tp_regulamentacao_nome VARCHAR(50)
+    tp_regulamentacao_nome VARCHAR(150)
 );
 
 CREATE table tp_dependencias(
-    tp_dependencias INTEGER PRIMARY KEY 
+    tp_dependencias VARCHAR(150) PRIMARY KEY 
 );
 
 CREATE table tp_equipamentos(
-    tp_equipamentos INTEGER PRIMARY KEY,
-    tp_equipamentos_nome VARCHAR(50)
+    tp_equipamentos VARCHAR(150) PRIMARY KEY
 );
 
 CREATE table tp_agua(
-    tp_agua INTEGER PRIMARY KEY not null,
+    tp_agua VARCHAR(150) PRIMARY KEY not null
 );
 
 CREATE table tp_esgoto(
-    tp_esgoto INTEGER PRIMARY KEY not null,
+    tp_esgoto VARCHAR(150) PRIMARY KEY not null
 
 );
 
 CREATE table tp_energia(
-    tp_energia INTEGER PRIMARY KEY not null
+    tp_energia VARCHAR(150) PRIMARY KEY not null
 );
 
 CREATE table tp_lixo(
-    tp_lixo INTEGER PRIMARY KEY not null
+    tp_lixo VARCHAR(150) PRIMARY KEY not null
 );
 
 CREATE table tp_internet(
-    tp_internet INTEGER PRIMARY KEY not null
+    tp_internet VARCHAR(150) PRIMARY KEY not null
 );
 
 CREATE TABLE tp_aee(
-    tp_aee INTEGER PRIMARY KEY
+    tp_aee INTEGER PRIMARY KEY,
+    tp_aee_nome VARCHAR(150)
 );
 
 CREATE TABLE tp_atividade_complementar(
-    tp_atividade_complementar INTEGER PRIMARY KEY
+    tp_atividade_complementar INTEGER PRIMARY KEY,
+    tp_atividade_complementar_nome VARCHAR(150)
 );
 
 CREATE TABLE tp_indigena_lingua(
-    tp_indigena_lingua INTEGER PRIMARY KEY
+    tp_indigena_lingua INTEGER PRIMARY KEY,
+    tp_indigena_lingua_nome VARCHAR(150)
 );
 
 CREATE TABLE tp_localizacao_diferenciada(
-    tp_localizacao_diferenciada INTEGER PRIMARY KEY
+    tp_localizacao_diferenciada INTEGER PRIMARY KEY,
+    tp_localizacao_diferenciada_nome VARCHAR(150)
 );
 
 CREATE TABLE tp_local_func(
-    tp_local_func INTEGER PRIMARY KEY
+    tp_local_func VARCHAR(150) PRIMARY KEY
 );
 
 CREATE TABLE tp_ocupacao_galpao(
-    tp_ocupacao_galpao INTEGER PRIMARY KEY
+    tp_ocupacao_galpao INTEGER PRIMARY KEY,
+    tp_ocupacao_galpao_nome VARCHAR(150)
 );
 
 CREATE TABLE tp_ocupacao_predio_escolar(
-    tp_ocupacao_predio_escolar INTEGER PRIMARY KEY
+    tp_ocupacao_predio_escolar INTEGER PRIMARY KEY,
+    tp_ocupacao_predio_escolar_nome VARCHAR(150)
 );
 
 CREATE table local_funcionamento(
-    local_funcionamento VARCHAR(50) PRIMARY KEY,
+    local_funcionamento VARCHAR(150) PRIMARY KEY,
     tp_localizacao_diferenciada INTEGER REFERENCES tp_localizacao_diferenciada(tp_localizacao_diferenciada) not null,
-    tp_local_func INTEGER REFERENCES tp_local_func(tp_local_func) not null,
+    tp_local_func VARCHAR(150) REFERENCES tp_local_func(tp_local_func) not null,
     tp_ocupacao_galpao INTEGER REFERENCES tp_ocupacao_galpao(tp_ocupacao_galpao),
     tp_ocupacao_predio_escolar INTEGER REFERENCES tp_ocupacao_predio_escolar(tp_ocupacao_predio_escolar)
 );
@@ -182,19 +189,46 @@ CREATE TABLE escola (
     tp_dependencia INTEGER REFERENCES tp_dependencia(tp_dependencia) not null,
     tp_localizacao INTEGER REFERENCES tp_localizacao(tp_localizacao) not null,
     tp_categoria_escola_privada INTEGER REFERENCES tp_categoria_escola_privada(tp_categoria_escola_privada),
-    in_conveniada_pp INTEGER REFERENCES in_conveniada_pp(in_conveniada_pp),
     tp_convenio_poder_publico INTEGER REFERENCES tp_convenio_poder_publico(tp_convenio_poder_publico),
     tp_regulamentacao INTEGER REFERENCES tp_regulamentacao(tp_regulamentacao),
     tp_aee INTEGER REFERENCES tp_aee(tp_aee),
     tp_atividade_complementar INTEGER REFERENCES tp_atividade_complementar(tp_atividade_complementar),
     tp_indigena_lingua INTEGER  REFERENCES tp_indigena_lingua(tp_indigena_lingua) not null,
-    local_funcionamento VARCHAR(50) REFERENCES local_funcionamento(local_funcionamento),
+    local_funcionamento VARCHAR(150) REFERENCES local_funcionamento(local_funcionamento),
     primary key(co_entidade,co_regiao,co_mesorregiao,co_microregiao,co_uf,co_municipio,co_distrito)
 
 );
 
+CREATE TABLE escola_conveniada_pp(
+	in_conveniada_pp VARCHAR(150) REFERENCES in_conveniada_pp(in_conveniada_pp),
+	co_entidade INT ,
+    co_regiao INT ,
+    co_mesorregiao INT,
+    co_microregiao int,
+    co_uf int,
+    co_municipio int,
+    co_distrito int,
+    FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
+	PRIMARY KEY(in_conveniada_pp, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
+ 
+);
+
+CREATE TABLE escola_local_funcionamento(
+	local_funcionamento VARCHAR(150) REFERENCES local_funcionamento(local_funcionamento),
+	co_entidade INT ,
+    co_regiao INT ,
+    co_mesorregiao INT,
+    co_microregiao int,
+    co_uf int,
+    co_municipio int,
+    co_distrito int,
+    FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
+	PRIMARY KEY(local_funcionamento, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
+ 
+);
+
 CREATE TABLE escola_mantenedor(
-	in_mantenedor INTEGER REFERENCESin_ mantenedor(in_mantenedor),
+	in_mantenedor VARCHAR(150) REFERENCES in_mantenedor(in_mantenedor),
 	co_entidade INT ,
     co_regiao INT ,
     co_mesorregiao INT,
@@ -208,7 +242,7 @@ CREATE TABLE escola_mantenedor(
 );
 
 CREATE TABLE escola_tp_dependencias(
-    tp_dependencias INTEGER REFERENCES tp_dependencias(tp_dependencias),
+    tp_dependencias VARCHAR(150) REFERENCES tp_dependencias(tp_dependencias),
 	co_entidade INT ,
     co_regiao INT ,
     co_mesorregiao INT,
@@ -224,7 +258,7 @@ CREATE TABLE escola_tp_dependencias(
 );
 
 CREATE TABLE escola_tp_equipamentos(
-    tp_equipamentos INTEGER REFERENCES tp_equipamentos(tp_equipamentos),
+    tp_equipamentos VARCHAR(150) REFERENCES tp_equipamentos(tp_equipamentos),
 	co_entidade INT ,
     co_regiao INT ,
     co_mesorregiao INT,
@@ -253,7 +287,7 @@ CREATE TABLE escola_tp_equipamentos(
 );
 
 CREATE TABLE escola_tp_agua(
-    tp_agua INTEGER REFERENCES tp_agua(tp_agua) not null,
+    tp_agua VARCHAR(150) REFERENCES tp_agua(tp_agua) not null,
 	co_entidade INT not null,
     co_regiao INT not null,
     co_mesorregiao INT not null, 
@@ -267,7 +301,7 @@ CREATE TABLE escola_tp_agua(
 );
 
 CREATE TABLE escola_tp_esgoto(
-    tp_esgoto INTEGER REFERENCES tp_esgoto(tp_esgoto),
+    tp_esgoto VARCHAR(150) REFERENCES tp_esgoto(tp_esgoto),
 	co_entidade INT not null,
     co_regiao INT not null,
     co_mesorregiao INT not null, 
@@ -281,7 +315,7 @@ CREATE TABLE escola_tp_esgoto(
 );
 
 CREATE TABLE escola_tp_energia(
-    tp_energia INTEGER REFERENCES tp_energia(tp_energia),
+    tp_energia VARCHAR(150) REFERENCES tp_energia(tp_energia),
 	co_entidade INT not null,
     co_regiao INT not null,
     co_mesorregiao INT not null, 
@@ -295,7 +329,7 @@ CREATE TABLE escola_tp_energia(
 );
 
 CREATE TABLE escola_tp_lixo(
-    tp_lixo INTEGER REFERENCES tp_lixo(tp_lixo),
+    tp_lixo VARCHAR(150) REFERENCES tp_lixo(tp_lixo),
 	co_entidade INT not null,
     co_regiao INT not null,
     co_mesorregiao INT not null, 
@@ -309,7 +343,7 @@ CREATE TABLE escola_tp_lixo(
 );
 
 CREATE TABLE escola_tp_internet(
-    tp_internet INTEGER REFERENCES tp_internet(tp_internet),
+    tp_internet VARCHAR(150) REFERENCES tp_internet(tp_internet),
 	co_entidade INT not null,
     co_regiao INT not null,
     co_mesorregiao INT not null, 

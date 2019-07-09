@@ -1,6 +1,6 @@
 ﻿DROP TABLE IF EXISTS ESCOLA_ORIGINAL;
 create table ESCOLA_ORIGINAL (
-	nu_ano_censo VARCHAR(4),
+	nu_ano_censo INT,
 	co_entidade VARCHAR(8),
 	no_entidade VARCHAR(100),
 	co_orgao_regional VARCHAR(5),

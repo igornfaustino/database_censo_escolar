@@ -140,13 +140,13 @@ INSERT INTO INGRESSOS_FEDERAIS(co_ingressos_federais, no_ingressos_federais) VAL
 (8, 'Outra forma de ingresso'),
 (9, 'Exame de seleção, vaga reservada para alunos da rede pública de ensino, com baixa renda');
 
-DROP TABLE IF EXISTS MEDIACAO_DIDATICO_PEDAGOGO CASCADE;
-CREATE TABLE MEDIACAO_DIDATICO_PEDAGOGO(
-   co_mediacao_didatico_pedagogo SMALLINT PRIMARY KEY,
-   no_mediacao_didatico_pedagogo VARCHAR(100)
+DROP TABLE IF EXISTS MEDIACAO_DIDATICO_PEDAGO CASCADE;
+CREATE TABLE MEDIACAO_DIDATICO_PEDAGO(
+   co_mediacao_didatico_pedago SMALLINT PRIMARY KEY,
+   no_mediacao_didatico_pedago VARCHAR(100)
 );
 
-INSERT INTO MEDIACAO_DIDATICO_PEDAGOGO(co_mediacao_didatico_pedagogo, no_mediacao_didatico_pedagogo) VALUES
+INSERT INTO MEDIACAO_DIDATICO_PEDAGO(co_mediacao_didatico_pedago, no_mediacao_didatico_pedago) VALUES
 	(1,  'Presencial'),
 	(2,  'Semipresencial'),
 	(3,  'EAD');
@@ -179,66 +179,6 @@ INSERT INTO TIPO_TURMA(co_tipo_turma, no_tipo_turma) VALUES
 (4, 'Atividade complementar'),
 (5, 'Atendimento Educacional Especializado (AEE)');
 
-DROP TABLE IF EXISTS DEPENDENCIA CASCADE;
-CREATE TABLE DEPENDENCIA(
-   co_dependencia SMALLINT PRIMARY KEY,
-   no_dependencia VARCHAR(100)
-);
-
-INSERT INTO DEPENDENCIA(co_dependencia, no_dependencia) VALUES
-(1, 'Federal'),
-(2, 'Estadual'),
-(3, 'Municipal'),
-(4, 'Privada');
-
-DROP TABLE IF EXISTS LOCALIZACAO CASCADE;
-CREATE TABLE LOCALIZACAO(
-   co_localizacao SMALLINT PRIMARY KEY,
-   no_localizacao VARCHAR(100)
-);
-
-INSERT INTO LOCALIZACAO(co_localizacao, no_localizacao) VALUES
-(1, 'Urbana'),
-(2, 'Rural');
-
-DROP TABLE IF EXISTS CONVENIO_PODER_PUBLICO CASCADE;
-CREATE TABLE CONVENIO_PODER_PUBLICO(
-   co_convenio_poder_publico SMALLINT PRIMARY KEY,
-   no_convenio_poder_publico VARCHAR(100)
-);
-
-INSERT INTO CONVENIO_PODER_PUBLICO(co_convenio_poder_publico, no_convenio_poder_publico) VALUES
-(1, 'Municipal'),
-(2, 'Estadual'),
-(3, 'Estadual e Municipal'),
-(4, 'Não aplicável para escolas públicas');
-
-DROP TABLE IF EXISTS REGULAMENTACAO CASCADE;
-CREATE TABLE regulamentacao(
-   co_regulamentacao SMALLINT PRIMARY KEY,
-   no_regulamentacao VARCHAR(100)
-);
-
-INSERT INTO REGULAMENTACAO(co_regulamentacao, no_regulamentacao) VALUES
-(0, 'nao'),
-(1, 'sim'),
-(2, 'Em tramitao');
-
-DROP TABLE IF EXISTS LOCALIZACAO_DIFERENCIADA CASCADE;
-CREATE TABLE LOCALIZACAO_DIFERENCIADA(
-   co_localizacao_diferenciada SMALLINT PRIMARY KEY,
-   no_localizacao_diferenciada VARCHAR(100)
-);
-
-INSERT INTO LOCALIZACAO_DIFERENCIADA(co_localizacao_diferenciada, no_localizacao_diferenciada) VALUES
-(0, 'A escola não está em localização diferenciada'),
-(1, 'Área de assentamento'),
-(2, 'Terra indígena'),
-(3, 'Área remanescente de quilombos'),
-(4, 'Unidade de uso sustentável'),
-(5, 'Unidade de uso sustentável em terra indígena'),
-(6, 'Unidade de uso sustentável em área remanescente de quilombos');
-
 DROP TABLE IF EXISTS TRANSPORTE CASCADE;
 CREATE TABLE TRANSPORTE(
    no_transporte VARCHAR(100) PRIMARY KEY
@@ -263,19 +203,19 @@ CREATE TABLE NECESSIDADE_ESPECIAL(
 );
 
 INSERT INTO NECESSIDADE_ESPECIAL(no_necessidade_especial) VALUES
-	('IN_CEGUEIRA SMALLINT'),
-	('IN_BAIXA_VISAO SMALLINT'),
-	('IN_SURDEZ SMALLINT'),
-	('IN_DEF_AUDITIVA SMALLINT'),
-	('IN_SURDOCEGUEIRA SMALLINT'),
-	('IN_DEF_FISICA SMALLINT'),
-	('IN_DEF_INTELECTUAL SMALLINT'),
-	('IN_DEF_MULTIPLA SMALLINT'),
-	('IN_AUTISMO SMALLINT'),
-	('IN_SINDROME_ASPERGER SMALLINT'),
-	('IN_SINDROME_RETT SMALLINT'),
-	('IN_TRANSTORNO_DI SMALLINT'),
-	('IN_SUPERDOTACAO SMALLINT');
+	('IN_CEGUEIRA'),
+	('IN_BAIXA_VISAO'),
+	('IN_SURDEZ'),
+	('IN_DEF_AUDITIVA'),
+	('IN_SURDOCEGUEIRA'),
+	('IN_DEF_FISICA'),
+	('IN_DEF_INTELECTUAL'),
+	('IN_DEF_MULTIPLA'),
+	('IN_AUTISMO'),
+	('IN_SINDROME_ASPERGER'),
+	('IN_SINDROME_RETT'),
+	('IN_TRANSTORNO_DI'),
+	('IN_SUPERDOTACAO');
 
 DROP TABLE IF EXISTS RECURSO CASCADE;
 CREATE TABLE RECURSO(
@@ -283,29 +223,15 @@ CREATE TABLE RECURSO(
 );
 
 INSERT INTO RECURSO(no_recurso) VALUES
-	('IN_RECURSO_LEDOR SMALLINT'),
-	('IN_RECURSO_TRANSCRICAO SMALLINT'),
-	('IN_RECURSO_INTERPRETE SMALLINT'),
-	('IN_RECURSO_LIBRAS SMALLINT'),
-	('IN_RECURSO_LABIAL SMALLINT'),
-	('IN_RECURSO_BRAILLE SMALLINT'),
-	('IN_RECURSO_AMPLIADA_16 SMALLINT'),
-	('IN_RECURSO_AMPLIADA_20 SMALLINT'),
-	('IN_RECURSO_AMPLIADA_24 SMALLINT'),
-	('IN_RECURSO_NENHUM SMALLINT');
-
-DROP TABLE IF EXISTS MANT_ESCOLA_PRIVADA CASCADE;
-CREATE TABLE MANT_ESCOLA_PRIVADA(
-   no_mant_escola_privada VARCHAR(100) PRIMARY KEY
-);
-
-INSERT INTO MANT_ESCOLA_PRIVADA(no_mant_escola_privada) VALUES
-	('IN_MANT_ESCOLA_PRIVADA_EMP SMALLINT'),
-	('IN_MANT_ESCOLA_PRIVADA_ONG SMALLINT'),
-	('IN_MANT_ESCOLA_PRIVADA_SIND SMALLINT'),
-	('IN_MANT_ESCOLA_PRIVADA_SIST_S SMALLINT'),
-	('IN_MANT_ESCOLA_PRIVADA_S_FINS SMALLINT');
-
+	('IN_RECURSO_LEDOR'),
+	('IN_RECURSO_TRANSCRICAO'),
+	('IN_RECURSO_INTERPRETE'),
+	('IN_RECURSO_LIBRAS'),
+	('IN_RECURSO_LABIAL'),
+	('IN_RECURSO_BRAILLE'),
+	('IN_RECURSO_AMPLIADA_16'),
+	('IN_RECURSO_AMPLIADA_20'),
+	('IN_RECURSO_AMPLIADA_24');
 
 DROP TABLE IF EXISTS matricula_original CASCADE;
 CREATE TABLE matricula_original(
@@ -425,3 +351,225 @@ CREATE TABLE MATRICULA
 insert into MATRICULA
 	SELECT ID_MATRICULA, CO_ENTIDADE, CO_REGIAO, CO_MESORREGIAO, CO_MICRORREGIAO, CO_UF, CO_MUNICIPIO, CO_DISTRITO, TP_ETAPA_ENSINO
 	FROM matricula_original;
+
+DROP TABLE IF EXISTS aluno CASCADE;
+CREATE TABLE aluno
+(
+    ID_ALUNO varchar(32),
+    id_matricula varchar(15) UNIQUE REFERENCES MATRICULA(id_matricula),
+    nu_dia SMALLINT,
+	nu_mes SMALLINT,
+	nu_ano INT,
+    nu_idade_referencia SMALLINT,
+    nu_idade SMALLINT,
+    tp_sexo SMALLINT REFERENCES SEXO(co_sexo),
+    cor_raca SMALLINT REFERENCES COR_RACA(co_cor_raca),
+    nacionalidade SMALLINT REFERENCES NACIONALIDADE(co_nacionalidade),
+    co_pais_origen SMALLINT REFERENCES PAIS(co_pais),
+    co_uf_nasc SMALLINT,
+    co_municipio_nasc int,
+    co_uf_end INT,
+    co_municipio_end INT,
+	tp_responsavel_transporte SMALLINT REFERENCES RESPONSAVEL_TRANSPORTE(co_responsavel_transporte),
+    tp_zona_residencial SMALLINT REFERENCES ZONA_RESIDENCIAL(co_zona_residencial),
+    tp_outro_local_aula SMALLINT REFERENCES LOCAL_AULA(co_local_aula),
+    tp_ingresso_federais SMALLINT REFERENCES INGRESSOS_FEDERAIS(co_ingressos_federais),
+    tp_mediacao_didatico_pedago SMALLINT REFERENCES MEDIACAO_DIDATICO_PEDAGO(co_mediacao_didatico_pedago),
+    PRIMARY KEY (id_aluno, id_matricula)
+);
+
+insert into aluno
+	SELECT ID_ALUNO, ID_MATRICULA, NU_DIA, NU_MES, NU_ANO, NU_IDADE_REFERENCIA, NU_IDADE, TP_SEXO, TP_COR_RACA, TP_NACIONALIDADE, CO_PAIS_ORIGEM, CO_UF_NASC, CO_MUNICIPIO_NASC, CO_UF_END, CO_MUNICIPIO_END, TP_RESPONSAVEL_TRANSPORTE, TP_ZONA_RESIDENCIAL, TP_OUTRO_LOCAL_AULA, TP_INGRESSO_FEDERAIS, TP_MEDIACAO_DIDATICO_PEDAGO
+	FROM matricula_original;
+
+DROP TABLE IF EXISTS NECESSIDADE_ALUNO CASCADE;
+CREATE TABLE NECESSIDADE_ALUNO (
+	ID_ALUNO varchar(32),
+    id_matricula varchar(15),
+	no_necessidade_especial VARCHAR(100) REFERENCES NECESSIDADE_ESPECIAL(no_necessidade_especial),
+	PRIMARY KEY (id_aluno, id_matricula, no_necessidade_especial),
+	FOREIGN key (id_aluno, id_matricula) REFERENCES aluno(id_aluno, id_matricula)
+);
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_CEGUEIRA'
+	FROM matricula_original
+	where IN_CEGUEIRA = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_BAIXA_VISAO'
+	FROM matricula_original
+	where IN_BAIXA_VISAO = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_SURDEZ'
+	FROM matricula_original
+	where IN_SURDEZ = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_DEF_AUDITIVA'
+	FROM matricula_original
+	where IN_DEF_AUDITIVA = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_SURDOCEGUEIRA'
+	FROM matricula_original
+	where IN_SURDOCEGUEIRA = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_DEF_FISICA'
+	FROM matricula_original
+	where IN_DEF_FISICA = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_DEF_INTELECTUAL'
+	FROM matricula_original
+	where IN_DEF_INTELECTUAL = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_DEF_MULTIPLA'
+	FROM matricula_original
+	where IN_DEF_MULTIPLA = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_AUTISMO'
+	FROM matricula_original
+	where IN_AUTISMO = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_SINDROME_ASPERGER'
+	FROM matricula_original
+	where IN_SINDROME_ASPERGER = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_SINDROME_RETT'
+	FROM matricula_original
+	where IN_SINDROME_RETT = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSTORNO_DI'
+	FROM matricula_original
+	where IN_TRANSTORNO_DI = 1;
+
+insert into NECESSIDADE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_SUPERDOTACAO'
+	FROM matricula_original
+	where IN_SUPERDOTACAO = 1;
+
+DROP TABLE IF EXISTS RECURSO_ALUNO CASCADE;
+CREATE TABLE RECURSO_ALUNO (
+	ID_ALUNO varchar(32),
+    id_matricula varchar(15),
+	no_recurso VARCHAR(100) REFERENCES RECURSO(no_recurso),
+	PRIMARY KEY (id_aluno, id_matricula, no_recurso),
+	FOREIGN key (id_aluno, id_matricula) REFERENCES aluno(id_aluno, id_matricula)
+);
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_LEDOR'
+	FROM matricula_original
+	where IN_RECURSO_LEDOR = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_TRANSCRICAO'
+	FROM matricula_original
+	where IN_RECURSO_TRANSCRICAO = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_INTERPRETE'
+	FROM matricula_original
+	where IN_RECURSO_INTERPRETE = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_LIBRAS'
+	FROM matricula_original
+	where IN_RECURSO_LIBRAS = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_LABIAL'
+	FROM matricula_original
+	where IN_RECURSO_LABIAL = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_BRAILLE'
+	FROM matricula_original
+	where IN_RECURSO_BRAILLE = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_AMPLIADA_16'
+	FROM matricula_original
+	where IN_RECURSO_AMPLIADA_16 = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_AMPLIADA_20'
+	FROM matricula_original
+	where IN_RECURSO_AMPLIADA_20 = 1;
+
+insert into RECURSO_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_RECURSO_AMPLIADA_24'
+	FROM matricula_original
+	where IN_RECURSO_AMPLIADA_24 = 1;
+
+DROP TABLE IF EXISTS TRANSPORTE_ALUNO CASCADE;
+CREATE TABLE TRANSPORTE_ALUNO (
+	ID_ALUNO varchar(32),
+    id_matricula varchar(15),
+	no_transporte VARCHAR(100) REFERENCES TRANSPORTE(no_transporte),
+	PRIMARY KEY (id_aluno, id_matricula, no_transporte),
+	FOREIGN key (id_aluno, id_matricula) REFERENCES aluno(id_aluno, id_matricula)
+);
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_VANS_KOMBI'
+	FROM matricula_original
+	where IN_TRANSP_VANS_KOMBI = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_MICRO_ONIBUS'
+	FROM matricula_original
+	where IN_TRANSP_MICRO_ONIBUS = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_ONIBUS'
+	FROM matricula_original
+	where IN_TRANSP_ONIBUS = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_BICICLETA'
+	FROM matricula_original
+	where IN_TRANSP_BICICLETA = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_TR_ANIMAL'
+	FROM matricula_original
+	where IN_TRANSP_VANS_KOMBI = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_OUTRO_VEICULO'
+	FROM matricula_original
+	where IN_TRANSP_MICRO_ONIBUS = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_EMBAR_ATE5'
+	FROM matricula_original
+	where IN_TRANSP_ONIBUS = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_EMBAR_5A15'
+	FROM matricula_original
+	where IN_TRANSP_BICICLETA = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_EMBAR_15A35'
+	FROM matricula_original
+	where IN_TRANSP_MICRO_ONIBUS = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_EMBAR_35'
+	FROM matricula_original
+	where IN_TRANSP_ONIBUS = 1;
+
+insert into TRANSPORTE_ALUNO
+	SELECT ID_ALUNO, ID_MATRICULA, 'IN_TRANSP_TREM_METRO'
+	FROM matricula_original
+	where IN_TRANSP_BICICLETA = 1;

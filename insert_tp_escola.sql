@@ -22,7 +22,7 @@ INSERT INTO tp_localizacao (tp_localizacao, tp_localizacao_nome) VALUES
 (1, 'Urbana'),
 (2, 'Rural');
 
-INSERT INTO tp_categoria_escolar_privada (tp_categoria_escolar_privada, tp_categoria_escolar_privada_nome) VALUES
+INSERT INTO tp_categoria_escola_privada (tp_categoria_escola_privada, tp_categoria_escola_privada_nome) VALUES
 (1, 'Particular'),
 (2, 'Comunitaria'),
 (3, 'Confessional'),
@@ -48,7 +48,7 @@ INSERT INTO tp_atividade_complementar (tp_atividade_complementar, tp_atividade_c
 (1, 'Não exclusivamente'),
 (2, 'Exclusivamente');
 
-INSERT INTO tp_indigina_lingua (tp_indigina_lingua, tp_indigina_lingua_nome) VALUES
+INSERT INTO tp_indigena_lingua (tp_indigena_lingua, tp_indigena_lingua_nome) VALUES
 (1, 'Somente em lingua indigena'),
 (2, 'Somente em lingua portuguesa'),
 (3, 'Em lingua indigina e em lingua portuguesa');

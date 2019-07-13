@@ -1,5 +1,4 @@
 
-
 --------------------- TABLES -------------------------------------------
 DROP TABLE IF EXISTS DOCENTE;
 CREATE TABLE DOCENTE(

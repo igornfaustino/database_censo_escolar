@@ -49,6 +49,8 @@ DROP TABLE if EXISTS in_final_semana cascade;
 DROP TABLE if EXISTS escola_in_final_semana cascade;
 DROP TABLE if EXISTS in_formacao_alternancia cascade;
 DROP TABLE if EXISTS escola_in_formacao_alternancia cascade;
+DROP TABLE if EXISTS in_local_funcionamento cascade;
+DROP TABLE if EXISTS escola_in_local_funcionamento cascade;
 
 create table tp_situacao_funcionamento
 (
@@ -223,19 +225,19 @@ CREATE TABLE oferta_matricula
 
 CREATE TABLE escola
 (
-    co_entidade INT,
+    co_entidade varchar(8),
     co_regiao INT,
     co_mesorregiao INT,
     co_microregiao int,
     co_uf int,
-    co_municipio int,
-    co_distrito int,
+    co_municipio varchar(7),
+    co_distrito varchar(9),
     no_entidade VARCHAR(100),
     co_orgao_regional VARCHAR(5),
-    dt_ano_letivo_inicio DATE,
-    dt_ano_letivo_termino DATE,
-    co_escola_sede_vinculada int,
-    co_ies_ofertante int,
+    dt_ano_letivo_inicio VARCHAR(20),
+    dt_ano_letivo_termino VARCHAR(20),
+    co_escola_sede_vinculada VARCHAR(8),
+    co_ies_ofertante VARCHAR(14),
     qt_funcionarios int,
     qt_equip_tv int,
     qt_equip_videocassete int,
@@ -250,43 +252,31 @@ CREATE TABLE escola
     qt_equip_fax int,
     qt_equip_foto int,
     qt_computador int,
-    qt_comp_administrativo int,
+    qt_com_administrativo int,
     qt_comp_aluno int,
-    tp_situacao_funcionamento INTEGER not null,
-    tp_faltante INTEGER REFERENCES tp_faltante
-    (tp_faltante) not null,
-    tp_dependencia INTEGER REFERENCES tp_dependencia
-    (tp_dependencia) not null,
-    tp_localizacao INTEGER REFERENCES tp_localizacao
-    (tp_localizacao) not null,
-    tp_categoria_escola_privada INTEGER REFERENCES tp_categoria_escola_privada
-    (tp_categoria_escola_privada),
-    tp_convenio_poder_publico INTEGER REFERENCES tp_convenio_poder_publico
-    (tp_convenio_poder_publico),
-    tp_regulamentacao INTEGER REFERENCES tp_regulamentacao
-    (tp_regulamentacao),
-    tp_aee INTEGER REFERENCES tp_aee
-    (tp_aee),
-    tp_atividade_complementar INTEGER REFERENCES tp_atividade_complementar
-    (tp_atividade_complementar),
-    tp_indigena_lingua INTEGER  REFERENCES tp_indigena_lingua
-    (tp_indigena_lingua) not null,
-
-    primary key
-    (co_entidade,co_regiao,co_mesorregiao,co_microregiao,co_uf,co_municipio,co_distrito)
+    tp_situacao_funcionamento INTEGER,
+    tp_dependencia INTEGER REFERENCES tp_dependencia (tp_dependencia),
+    tp_localizacao INTEGER REFERENCES tp_localizacao (tp_localizacao),
+    tp_categoria_escola_privada INTEGER REFERENCES tp_categoria_escola_privada(tp_categoria_escola_privada),
+    tp_convenio_poder_publico INTEGER REFERENCES tp_convenio_poder_publico (tp_convenio_poder_publico),
+    tp_regulamentacao INTEGER REFERENCES tp_regulamentacao (tp_regulamentacao),
+    tp_aee INTEGER REFERENCES tp_aee (tp_aee),
+    tp_atividade_complementar INTEGER REFERENCES tp_atividade_complementar (tp_atividade_complementar),
+    tp_indigena_lingua INTEGER  REFERENCES tp_indigena_lingua (tp_indigena_lingua),
+    primary key (co_entidade,co_regiao,co_mesorregiao,co_microregiao,co_uf,co_municipio,co_distrito)
 
 );
 
     CREATE TABLE escola_conveniada_pp
     (
         in_conveniada_pp VARCHAR(150) REFERENCES in_conveniada_pp(in_conveniada_pp),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_conveniada_pp, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -295,13 +285,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_local_funcionamento
     (
         in_local_funcionamento VARCHAR(150) REFERENCES in_local_funcionamento(in_local_funcionamento),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_local_funcionamento, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -310,13 +300,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_mantenedor
     (
         in_mantenedor VARCHAR(150) REFERENCES in_mantenedor(in_mantenedor),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_mantenedor, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -325,13 +315,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_dependencias
     (
         in_dependencias VARCHAR(150) REFERENCES in_dependencias(in_dependencias),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_dependencias, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
     );
@@ -339,13 +329,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_equipamentos
     (
         in_equipamentos VARCHAR(150) REFERENCES in_equipamentos(in_equipamentos),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_equipamentos, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -354,13 +344,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_agua
     (
         in_agua VARCHAR(150) REFERENCES in_agua(in_agua) not null,
-        co_entidade INT not null,
+        co_entidade varchar(8) not null,
         co_regiao INT not null,
         co_mesorregiao INT not null,
         co_microregiao int not null,
         co_uf int not null,
-        co_municipio int not null,
-        co_distrito int not null,
+        co_municipio VARCHAR(7) not null,
+        co_distrito VARCHAR(9) not null,
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_agua, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -369,13 +359,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_esgoto
     (
         in_esgoto VARCHAR(150) REFERENCES in_esgoto(in_esgoto),
-        co_entidade INT not null,
+        co_entidade varchar(8) not null,
         co_regiao INT not null,
         co_mesorregiao INT not null,
         co_microregiao int not null,
         co_uf int not null,
-        co_municipio int not null,
-        co_distrito int not null,
+        co_municipio VARCHAR(7) not null,
+        co_distrito VARCHAR(9) not null,
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_esgoto, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -384,13 +374,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_energia
     (
         in_energia VARCHAR(150) REFERENCES in_energia(in_energia),
-        co_entidade INT not null,
+        co_entidade varchar(8) not null,
         co_regiao INT not null,
         co_mesorregiao INT not null,
         co_microregiao int not null,
         co_uf int not null,
-        co_municipio int not null,
-        co_distrito int not null,
+        co_municipio VARCHAR(7) not null,
+        co_distrito VARCHAR(9) not null,
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_energia, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -399,13 +389,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_lixo
     (
         in_lixo VARCHAR(150) REFERENCES in_lixo(in_lixo),
-        co_entidade INT not null,
+        co_entidade varchar(8) not null,
         co_regiao INT not null,
         co_mesorregiao INT not null,
         co_microregiao int not null,
         co_uf int not null,
-        co_municipio int not null,
-        co_distrito int not null,
+        co_municipio VARCHAR(7) not null,
+        co_distrito VARCHAR(9) not null,
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_lixo, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -414,13 +404,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_internet
     (
         in_internet VARCHAR(150) REFERENCES in_internet(in_internet),
-        co_entidade INT not null,
+        co_entidade varchar(8) not null,
         co_regiao INT not null,
         co_mesorregiao INT not null,
         co_microregiao int not null,
         co_uf int not null,
-        co_municipio int not null,
-        co_distrito int not null,
+        co_municipio VARCHAR(7) not null,
+        co_distrito VARCHAR(9) not null,
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_internet, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -429,13 +419,13 @@ CREATE TABLE escola
     CREATE TABLE escola_oferta_matricula
     (
         oferta_matricula VARCHAR(100) REFERENCES oferta_matricula(oferta_matricula),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(oferta_matricula, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -444,13 +434,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_alimentacao
     (
         in_alimentacao VARCHAR(150) REFERENCES in_alimentacao(in_alimentacao),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_alimentacao, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -459,13 +449,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_fundamental_ciclos
     (
         in_fundamental_ciclos VARCHAR(150) REFERENCES in_fundamental_ciclos(in_fundamental_ciclos),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_fundamental_ciclos, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -474,13 +464,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_material
     (
         in_material VARCHAR(150) REFERENCES in_material(in_material),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_material, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -489,13 +479,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_educacao_indigena
     (
         in_educacao_indigena VARCHAR(150) REFERENCES in_educacao_indigena(in_educacao_indigena),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_educacao_indigena, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -504,13 +494,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_brasil_alfabetizado
     (
         in_brasil_alfabetizado VARCHAR(150) REFERENCES in_brasil_alfabetizado(in_brasil_alfabetizado),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_brasil_alfabetizado, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -519,13 +509,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_final_semana
     (
         in_final_semana VARCHAR(150) REFERENCES in_final_semana (in_final_semana),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_final_semana, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 
@@ -534,13 +524,13 @@ CREATE TABLE escola
     CREATE TABLE escola_in_formacao_alternancia
     (
         in_formacao_alternancia VARCHAR(150) REFERENCES in_formacao_alternancia (in_formacao_alternancia),
-        co_entidade INT ,
+        co_entidade varchar(8) ,
         co_regiao INT ,
         co_mesorregiao INT,
         co_microregiao int,
         co_uf int,
-        co_municipio int,
-        co_distrito int,
+        co_municipio VARCHAR(7),
+        co_distrito VARCHAR(9),
         FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) on delete cascade,
         PRIMARY KEY(in_formacao_alternancia, co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito)
 

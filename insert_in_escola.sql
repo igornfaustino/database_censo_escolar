@@ -11,11 +11,11 @@ insert into in_local_funcionamento(in_local_funcionamento) VALUES
 ('IN_LOCAL_FUNC_SOCIOEDUCATIVO'),
 ('IN_LOCAL_FUNC_UNID_PRISIONAL'),
 ('IN_LOCAL_FUNC_PRISIONAL_SOCIO'),
-('IN_LOCAL_FUNC_TEMPLO_IGRAJA'),
+('IN_LOCAL_FUNC_TEMPLO_IGREJA'),
 ('IN_LOCAL_FUNC_CASA_PROFESSOR'),
 ('IN_LOCAL_FUNC_GALPAO'),
-('IN_LOCAL_FUNC_SALAS_OUTRA_ESC'),
-('IN_LOCAL_FUNC_OUTROS'),
+('IN_LOCAL_FUN_SALAS_OUTRA_ESC'),
+('IN_LOCAL_FUN_SALAS_OUTROS'),
 ('IN_PREDIO_COMPARTILHADO');
 
 insert into in_agua(in_agua) VALUES
@@ -116,6 +116,9 @@ insert into in_formacao_alternancia(in_formacao_alternancia) VALUES
 
 insert into in_conveniada_pp(in_conveniada_pp) VALUES
 ('IN_CONVENIADA_PP');
+
+insert into in_fundamental_ciclos(in_fundamental_ciclos) VALUES
+('IN_FUNDAMENTAL_CICLOS');
 
 insert into in_material(in_material) VALUES
 ('IN_MATERIAL_ESP_QUILOMBOLA'),

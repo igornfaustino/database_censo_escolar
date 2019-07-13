@@ -1,5 +1,5 @@
-﻿DROP TABLE IF EXISTS ESCOLA_ORIGINAL;
-create table ESCOLA_ORIGINAL (
+﻿DROP TABLE IF EXISTS escola_original;
+create table escola_original (
 	nu_ano_censo INT,
 	co_entidade VARCHAR(8),
 	no_entidade VARCHAR(100),
@@ -132,7 +132,7 @@ create table ESCOLA_ORIGINAL (
 	int_material_esp_indigena int,
 	int_material_esp_nao_utiliza int,
 	int_educacao_indigena int, 
-	tp_lingua_indigena int,
+	tp_indigena_lingua int,
 	co_lingua_indigena int,
 	in_brasil_alfabetizado int,
 	in_final_semana int,

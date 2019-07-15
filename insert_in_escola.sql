@@ -1,9 +1,9 @@
 insert into in_mantenedor (in_mantenedor) values
-('IN_MANT_ESCOLA_PRIVADA_EMP'),
-('IN_MANT_ESCOLA_PRIVADA_ONG'),
-('IN_MANT_ESCOLA_PRIVADA_SIND'),
-('IN_MANT_ESCOLA_PRIVADA_SIST_S'),
-('IN_MANT_ESCOLA_PRIVADA_S_FINS');
+('IN_MAT_ESCOLA_PRIVADA_EMP'),
+('IN_MAT_ESCOLA_PRIVADA_ONG'),
+('IN_MAT_ESCOLA_PRIVADA_SIND'),
+('IN_MAT_ESCOLA_PRIVADA_SIST_S'),
+('IN_MAT_ESCOLA_PRIVADA_S_FINS');
 
 insert into in_local_funcionamento(in_local_funcionamento) VALUES
 ('IN_LOCAL_FUNC_PREDIO_ESCOLAR'),
@@ -66,7 +66,7 @@ insert into in_dependencias(in_dependencias) VALUES
 ('IN_BANHEIRO_PNE'),
 ('IN_DEPENDENCIAS_PNE'),
 ('IN_SECRETARIA'),
-('IN_BANHEIRO_CHUVEIRO'),
+('IN_BANHEIRA_CHUVEIRO'),
 ('IN_REFEITORIO'),
 ('IN_DESPANSA'),
 ('IN_ALMOXARIFADO'),
@@ -82,7 +82,7 @@ insert into in_dependencias(in_dependencias) VALUES
 
 insert into in_equipamentos(in_equipamentos) VALUES
 ('IN_EQUIP_TV'),
-('IN_EQUIP__VIDEOCASSETE'),
+('IN_EQUIP_VIDEOCASSETE'),
 ('IN_EQUIP_DVD'),
 ('IN_EQUIP_PARABOLICA'),
 ('IN_EQUIP_COPIADORA'),

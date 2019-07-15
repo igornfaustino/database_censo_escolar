@@ -63,24 +63,29 @@ FROM escola_original
 where IN_PREDIO_COMPARTILHADO = 1;
 
 insert into escola_in_mantenedor
-SELECT 'IN_MANT_ESCOLA_PRIVADA_EMP', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
+SELECT 'IN_MAT_ESCOLA_PRIVADA_EMP', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
 FROM escola_original
-where IN_MANT_ESCOLA_PRIVADA_EMP = 1;
+where IN_MAT_ESCOLA_PRIVADA_EMP = 1;
 
 insert into escola_in_mantenedor
-SELECT 'IN_MANT_ESCOLA_PRIVADA_ONG', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
+SELECT 'IN_MAT_ESCOLA_PRIVADA_ONG', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
 FROM escola_original
-where IN_MANT_ESCOLA_PRIVADA_ONG = 1;
+where IN_MAT_ESCOLA_PRIVADA_ONG = 1;
 
 insert into escola_in_mantenedor
-SELECT 'IN_MANT_ESCOLA_PRIVADA_SIND', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
+SELECT 'IN_MAT_ESCOLA_PRIVADA_SIND', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
 FROM escola_original
-where IN_MANT_ESCOLA_PRIVADA_SIND = 1;
+where IN_MAT_ESCOLA_PRIVADA_SIND = 1;
 
 insert into escola_in_mantenedor
-SELECT 'IN_MANT_ESCOLA_PRIVADA_SIST_S', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
+SELECT 'IN_MAT_ESCOLA_PRIVADA_SIST_S', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
 FROM escola_original
-where IN_MANT_ESCOLA_PRIVADA_SIST_S = 1;
+where IN_MAT_ESCOLA_PRIVADA_SIST_S = 1;
+
+insert into escola_in_mantenedor
+SELECT 'IN_MAT_ESCOLA_PRIVADA_S_FINS', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito
+FROM escola_original
+where IN_MAT_ESCOLA_PRIVADA_S_FINS = 1;
 
 insert into escola_in_dependencias
 SELECT 'IN_SALA_DIRETORIA', co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito

@@ -344,9 +344,8 @@ CREATE TABLE MATRICULA
     co_uf INT,
     co_municipio INT,
     co_distrito INT,
-    tp_etapa_ensino INT
-    -- PRIMARY KEY (id_matricula),
-    -- FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) 
+    tp_etapa_ensino INT,
+    FOREIGN KEY(co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) REFERENCES escola (co_entidade, co_regiao, co_mesorregiao, co_microregiao, co_uf, co_municipio, co_distrito) 
 );
 insert into MATRICULA
 	SELECT ID_MATRICULA, CO_ENTIDADE, CO_REGIAO, CO_MESORREGIAO, CO_MICRORREGIAO, CO_UF, CO_MUNICIPIO, CO_DISTRITO, TP_ETAPA_ENSINO

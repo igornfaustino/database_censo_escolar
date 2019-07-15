@@ -1,29 +1,21 @@
-CREATE TABLE tipo_turma(
-    id_tipo CHAR(50),
-    PRIMARY KEY (id_tipo)
-);
-
-CREATE TABLE mediacao_didatico_pedago(
-    id_mediacao_didatico CHAR(50),
-
-    PRIMARY KEY (id_mediacao_didatico)
-);
-
 CREATE TABLE dias_semana(
-    id_dia CHAR(50),
+    id_dia INT,
+    dia CHAR(50),
 
     PRIMARY KEY (id_dia)
 );
 
-CREATE TABLE tipo_atividade(
-    id_tipo CHAR(50),
+CREATE TABLE co_tipo_atividade(
+    id_tipo INT,
+    atividade INT,
 
     PRIMARY KEY (id_tipo)
 );
 
 
 CREATE TABLE tipo_inclusao(
-    id_inclusao CHAR(50),
+    id_inclusao INT,
+    inclusao CHAR(100),
 
 
     PRIMARY KEY (id_inclusao)
@@ -31,55 +23,53 @@ CREATE TABLE tipo_inclusao(
 
 CREATE TABLE turma (
     id_turma INT,
-    id_tipo_turma INT,
-    id_etapa_de_ensino INT,
-    id_mediacao_didatico_pedago CHAR(50),
+    id_tp_tipo_turma SMALLINT,
+    id_ETAPA_DE_ENSINO INT,
+    id_MEDIACAO_DIDATICO_PEDAGO SMALLINT,
 
 
-
+    no_turma CHAR(100),
     in_mais_educacao BOOLEAN,
-    hora_inicio DATE,
+    hora_inicio INT,
+    minutro_inicio INT,
     nu_duracao_turma INT,
     qt_matriculas INT,
     in_especial_exclusiva BOOLEAN,
     in_regular BOOLEAN,
     in_eja BOOLEAN,
     in_profissionalizante BOOLEAN,
-    num_dias_atividades INT,
-    in_enriq_curricular BOOLEAN,
-    in_soroban BOOLEAN,
-    in_autonomia_escolar BOOLEAN,
+    nu_dias_atividade INT,
+
 
     PRIMARY KEY (id_turma),
-    FOREIGN KEY (id_tipo_turma) REFERENCES tipo_turma(id_tipo),
-    FOREIGN KEY (id_etapa_de_ensino) REFERENCES etapa_de_ensino(id_etapa),
-    FOREIGN KEY (id_mediacao_didatico_pedago) REFERENCES mediacao_didatico_pedago(id_mediacao_didatico)
-
+    FOREIGN KEY (id_tp_tipo_turma) REFERENCES TIPO_TURMA(co_tipo_turma),
+    FOREIGN KEY (id_ETAPA_DE_ENSINO) REFERENCES ETAPA_DE_ENSINO(id_etapa),
+    FOREIGN KEY (id_MEDIACAO_DIDATICO_PEDAGO) REFERENCES MEDIACAO_DIDATICO_PEDAGO(co_mediacao_didatico_pedago)
 );
 
 CREATE TABLE turma_tipo_inclusao(
-    id_turma_tipo_inclusao INT,
+    id_turma_tipo_inclusao SERIAL,
     id_turma INT,
-    id_tipo_inclusao CHAR(50),
+    id_tipo_inclusao INT,
 
     PRIMARY KEY (id_turma_tipo_inclusao),
     FOREIGN KEY (id_turma) REFERENCES turma(id_turma),
     FOREIGN KEY (id_tipo_inclusao) REFERENCES tipo_inclusao(id_inclusao)
 );
 
-CREATE TABLE turma_tipo_atividade(
+CREATE TABLE turma_co_tipo_atividade(
     id_turma_tipo INT,
-    id_tipo_atividade CHAR(50),
+    id_co_tipo_atividade CHAR(50),
     id_turma INT,
 
     PRIMARY KEY (id_turma_tipo),
-    FOREIGN KEY (id_tipo_atividade) REFERENCES tipo_atividade(id_tipo),
+    FOREIGN KEY (id_co_tipo_atividade) REFERENCES co_tipo_atividade(id_tipo),
     FOREIGN KEY (id_turma) REFERENCES turma(id_turma)
 );
 
 CREATE TABLE dia_semana_turma(
     id_dia_semana_turma INT,
-    id_dia_semana CHAR(50),
+    id_dia_semana INT,
     id_turma INT,
 
     PRIMARY KEY (id_dia_semana_turma),
@@ -88,30 +78,25 @@ CREATE TABLE dia_semana_turma(
 );
 
 
-CREATE TABLE tipo_materia(
-    id_materia CHAR(50),
-    PRIMARY KEY (id_materia)
 
-);
-
-
-CREATE TABLE turma_tipo_materia(
-    id_turma_tipo_materia INT,
+CREATE TABLE turma_disciplina(
+    id_turma_disciplina SERIAL,
     id_turma INT,
-    id_tipo_materia CHAR(50),
+    id_disciplina INT,
 
-    PRIMARY KEY(id_turma_tipo_materia),
+    PRIMARY KEY(id_turma_disciplina),
     FOREIGN KEY (id_turma) REFERENCES turma(id_turma),
-    FOREIGN KEY (id_tipo_materia) REFERENCES tipo_materia(id_materia)
+    FOREIGN KEY (id_tipo_materia) REFERENCES DISCIPLINA(ID_DISCIPLINA)
 
 );
 
 
 CREATE TABLE tipo_materia_etapa_ensino(
-    id_tipo_materia CHAR(50),
-    id_etapa_de_ensino CHAR(50),
+    id SERIAL,
+    id_tipo_materia INT,
+    id_ETAPA_DE_ENSINO INT,
 
 
-    PRIMARY KEY(id_tipo_materia),
-    FOREIGN KEY(id_etapa_de_ensino) REFERENCES etapa_de_ensino(id_etapa)
+    FOREIGN KEY(id_tipo_materia) REFERENCES DISCIPLINA(ID_DISCIPLINA),
+    FOREIGN KEY(id_ETAPA_DE_ENSINO) REFERENCES ETAPA_DE_ENSINO(id_etapa)
 );

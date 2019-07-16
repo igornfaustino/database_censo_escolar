@@ -29,15 +29,15 @@ CREATE TABLE turma (
 
 
     no_turma CHAR(100),
-    in_mais_educacao BOOLEAN,
+    in_mais_educacao INT,
     hora_inicio INT,
     minutro_inicio INT,
     nu_duracao_turma INT,
     qt_matriculas INT,
-    in_especial_exclusiva BOOLEAN,
-    in_regular BOOLEAN,
-    in_eja BOOLEAN,
-    in_profissionalizante BOOLEAN,
+    in_especial_exclusiva INT,
+    in_regular INT,
+    in_eja INT,
+    in_profissionalizante INT,
     nu_dias_atividade INT,
 
 
